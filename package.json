@@ -1,0 +1,19 @@
+{
+  "name": "vue-computed-watch",
+  "version": "1.0.0",
+  "description": "简单实现vue的computed和watch",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:KongYinZi/vue-computed-watch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^2.6.5"
+  }
+}
