@@ -15,13 +15,16 @@ const vm = new Vue({
     total1: {
       get() {
         console.log('Computed total1')
-        return this.a + this.b
+        return this.total * 2
       }
     }
   },
   watch: {
     total(newValue, oldValue) {
       console.log('watcher total:', newValue, oldValue)
+    },
+    total1(newValue, oldValue) {
+      console.log('watcher total1:', newValue, oldValue)
     },
     a(newValue, oldValue) {
       console.log('watcher a:', newValue, oldValue)
@@ -34,18 +37,21 @@ const vm = new Vue({
 
 console.log(vm)
 
+console.log('-------------', vm.total1)
 console.log(vm.total)
 console.log(vm.total)
 console.log(vm.total)
 
 vm.a = 100
 
+console.log('-------------', vm.total1)
 console.log(vm.total)
 console.log(vm.total)
 console.log(vm.total)
 
 vm.b = 200
 
+console.log('-------------', vm.total1)
 console.log(vm.total)
 console.log(vm.total)
 console.log(vm.total)

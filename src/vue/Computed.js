@@ -45,11 +45,17 @@ class Computed {
   }
 
   update(key, watch) {
+    // debugger
+    const computedPropArr = []
     this.computedData.forEach(item => {
       const dep = item.dep
+      // 依赖里是否有 data 里的属性
       const _key = dep.find(prop => prop == key)
+      // 依赖里是否有 computed 里的属性（即computed属性里面嵌套computed属性的情况）
+      const _computedKey = computedPropArr.find(key => dep.includes(key))
       // 如果某个computed的dep里面有更新的key
-      if(_key) {
+      if(_key || _computedKey) {
+        computedPropArr.push(item.key)
         const oldValue = item.value
         // 使computed重新计算值
         item.value = item.get()
@@ -65,7 +71,8 @@ class Computed {
   _collectDep(fn) {
     // 匹配这个computed函数中使用到的响应式值有哪些，这里是 this.a和this.b
     // matched = ['this.a', 'this.b']
-    const matched = fn.toString().match(/this\.(.+?)/g)
+    const matched = fn.toString().match(/this\.([\S]+)/g)
+    console.log(matched)
     
     // 这里返回的就是['a', 'b']
     return matched.map(item => item.split('.')[1])
